@@ -1,7 +1,7 @@
-
 import Cards from "./layouts/Cards";
-import Header from "./layouts/header";
+import Header from "../profile/Header";
 import TableUI from "./layouts/TableUI";
+import Footer from "../footer/Footer";
 
 function AdminContainer() {
   return (
@@ -9,11 +9,8 @@ function AdminContainer() {
       <Header />
       <Cards />
       <TableUI />
+      <Footer />
     </div>
-
-
-     
-
   )
 }
 

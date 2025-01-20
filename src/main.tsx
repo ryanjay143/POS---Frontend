@@ -3,35 +3,72 @@ import { Navigate, RouterProvider, createBrowserRouter } from "react-router-dom"
 import './index.css';
 import React, { Suspense, lazy } from "react";
 import Loader from './components/loader.tsx';
-
-import Admin from './Admin.tsx';
+import AdminProtectedRoute from "./protector/AdminProtectedRoute.tsx";
 import NotFound from './notFound.tsx';
 
+const DashboardContainer = lazy(() => 
+  wait(1300).then(() => import('./views/admin/dashboard/DashboardContainer.tsx'))
+);
 
-const AdminContainer = lazy(() => 
-  wait(1300).then(() => import('./views/admin/AdminContainer.tsx'))
+const CashierContainer = lazy(() => 
+  wait(1300).then(() => import('./views/admin/cashier/CashierContainer.tsx'))
+);
+
+const ProductContainer = lazy(() => 
+  wait(1300).then(() => import('./views/admin/product/ProductContainer.tsx'))
+);
+
+const Login = lazy(() =>
+  wait(1300).then(() => import("../src/views/auth/Login.tsx"))
 );
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Admin />,
+    element: <Navigate to="/login" />,
+  },
+  {
+    path: "/login",
+    element: <>
+      <Suspense fallback={<Loader />}>
+        <Login />
+      </Suspense>
+    </>,
+  },
+  {
+    path: "/admin",
+    element: <AdminProtectedRoute />,
     children: [
       {
-        path: "/",
-        element: <Navigate to="/pos/admin" />,
+        path: "/admin",
+        element: <Navigate to="/admin/pos" />,
       },
       {
-        path: "/pos/admin",
+        path: "/admin/pos",
         element: (
           <Suspense fallback={<Loader />}>
-            <AdminContainer />
+            <DashboardContainer />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/admin/cashier",
+        element: (
+          <Suspense fallback={<Loader />}>
+            <CashierContainer />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/admin/products",
+        element: (
+          <Suspense fallback={<Loader />}>
+            <ProductContainer />
           </Suspense>
         ),
       },
     ],
   },
-  
   {
     path: "*", 
     element: <NotFound />,

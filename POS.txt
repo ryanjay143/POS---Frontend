@@ -1,0 +1,155 @@
+Admin store Sidebar Labels for POS
+1. Dashboard – Overview of sales, transactions, and reports.
+2. Products – Manage inventory, add/edit products, categories.
+3. Transactions – View sales history, process refunds, and receipts.
+4. Sales Report – Generate daily, weekly, and monthly sales reports.
+5. Suppliers – Track and manage product suppliers and purchase orders.
+6. Stock Management – Monitor inventory levels and stock-in/out history.
+7. Cashier – Manage system users, roles, and permissions, Monitor login times, transaction activity, and unauthorized access attempts.
+8. Settings – Configure system preferences, payment methods, and taxes.
+Logout – Sign out from the admin panel.
+
+User Management for Admin store Table Example:
+User			Role			Store		Status		Last Login					Actions
+John Doe		Admin Store		Store A		Active		January 18, 2025, 9:00 AM	Edit/Delete
+Jane Smith		Cashier			Store A		Active		January 18, 2025, 10:00 AM	Edit/Delete
+Mike Gonzales	Admin Store		Store B		Expired		December 30, 2024			Renew
+
+
+Owner Sidebar
+1. Dashboard - Active Stores, Alerts and Notifications
+2. User Management - Manage and monitor all user roles: Admin Stores, Assign roles (Admin Store), Store Status, 
+View active/inactive stores, 
+3. Payment and Subscriptions
+Payment Tracking:
+ *View all payments made by stores.
+ *Track outstanding balances or overdue subscriptions.
+Subscription Management:
+ *Assign subscription plans (e.g., monthly, yearly).
+ *Automatically alert stores for upcoming renewal deadlines.
+Revenue Analytics:
+ *Total revenue from subscriptions.
+ *Breakdown by store or plan type.
+
+Payment Table Example:
+Store Name	Plan			Amount Paid	Status		Next Payment Due	Actions
+Store A		Monthly (₱500)		₱500		Active		February 1, 2025	Renew
+Store B		Yearly (₱5,000)		₱5,000		Expired		N/A			Reactivate
+
+4. Subscription Reports
+ *Subscription payments received.
+ *Stores with pending payments.
+
+
+Cashier
+1. Point of Sale (POS) Interface
+
+ *Quick Sale Processing:
+	-Search and add items by name, barcode, or category.
+	-Automatically calculate totals, taxes, and discounts.
+ *Payment Handling:
+	-Accept multiple payment methods (cash, gcash etc.).
+	-Display change for cash payments.
+ *Receipt Generation:
+	-Print or email receipts after each transaction.
+
+Example POS Layout:
+Left Pane: List of added products with quantity, price, and total.
+Center Pane: Product search, categories, or barcode scanner input.
+Right Pane: Payment options, subtotal, tax, discounts, and grand total.
+
+2. Transaction History
+ *Access past transactions handled by the cashier during their duties.
+ *Search by receipt number, date, or customer name.
+ *View refunded or voided transactions
+ *Details Displayed:
+	*Transaction ID, customer name, total amount, payment method, and time.
+
+3. Work Management
+ *Login/Logout Times:
+	*Log the start and end of the cashier's duties.
+ *Shift Summary Report:
+	*Total sales processed.
+	*Number of transactions.
+	*Cash counted at the end of the duties.
+
+Metric			Value
+Total Sales		₱15,320
+Number of Transactions	30
+Cash Payments		₱10,000
+GCash Payments		₱5,320
+
+4. Inventory Lookup
+	*Allow cashiers to check the availability of a product:
+		-Current Stock Levels: Show if an item is in stock or out of stock.
+		-Product Details: Name, price, SKU/barcode, and location (if applicable).
+
+5. Customer Management (Optional)
+ *If your POS integrates customer profiles:
+	-Add customers during checkout (name, contact info, etc.).
+
+Technology Stack for Cashier Module
+Frontend: Responsive design using React.js, Vue.js, or Bootstrap.
+Backend: Laravel for APIs to fetch products, manage transactions, and record shifts.
+Hardware:
+Barcode scanner for product input.
+Receipt printer for transaction receipts.
+Optional: Cash drawer integration.
+
+Customer
+1. Order Placement (Signed In or Guest)
+ *For Signed-In Customers:
+	-Retrieve saved details (e.g., name, contact info, preferred payment methods).
+	-Allow customers to view their order history and apply loyalty points or discounts.
+ *For Guest Customers:
+	-Simple ordering process without the need to log in.
+	-Option to create an account at the end of the transaction (optional).
+Workflow:
+	-Select products (via cashier or online interface).
+	-Confirm order details.
+	-Choose payment method (cash, card, or online payment).
+	-Receive receipt (print or email).
+2. Product Catalog/Ordering System
+ *Customers can view the available products or menu items through an interface (e.g., touchscreen kiosk, website, or app).
+ *Filters and Search Options:
+	-Filter products by category, price range, or popularity.
+	-Search for specific products by name or SKU.
+ *Promotions:
+	-Display special offers or discounts directly in the catalog.
+
+Product Name	Price	Stock		Add to Cart
+Chocolate Cake	₱300	Available	[Add to Cart]
+Coffee Beans	₱450	Low Stock	[Add to Cart]
+Milk Tea	₱120	Out of Stock	[Notify Me]
+
+
+3. Receipt Options
+	*After payment, customers can choose:
+		-Printed Receipt: For walk-in customers.
+
+Guest vs. Signed-In Customer Comparison
+Feature				Guest Customer	Signed-In Customer
+Order Products			✅			✅
+Save Order History		❌			✅
+Loyalty Points			❌			✅
+Delivery Address Auto-Fill	❌			✅
+Personalized Discounts		❌			✅
+
+4. Loyalty Program (Optional for Signed-In Customers)
+ *Point Accumulation:
+	-Customers earn points for every purchase.
+	-Example: 1 point for every ₱100 spent.
+ *Redeemable Rewards:
+	-Points can be exchanged for discounts or free products.
+ *Loyalty Dashboard:
+	-Customers can view earned points, redemption options, and transaction history.
+
+
+Customer Dashboard (For Signed-In Customers)
+If a customer logs into their account, they can have access to:
+
+Order History: View past purchases, including item details, amounts, and payment methods.
+Loyalty Points: Current balance and rewards they can redeem.
+Profile Management: Update name, email, phone number, and preferred payment methods.
+Order Status (For Delivery): Real-time tracking of their order.
+
