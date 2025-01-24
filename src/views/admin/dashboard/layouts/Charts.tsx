@@ -88,7 +88,7 @@ function Charts() {
     <div className='grid grid-cols-2 md:grid-cols-1 slg:grid-cols-1 gap-4 w-full'>
 
     {/* Sales Overview */}
-    <Card className='border border-primary'>
+    <Card className='border border-primary animation-fadeInLeft'>
       <CardHeader>
         <CardTitle>Sales Overview</CardTitle>
       </CardHeader>
@@ -106,7 +106,7 @@ function Charts() {
     </Card>
 
     {/* Top Products */}
-    <Card className='border border-primary'>
+    <Card className='border border-primary fadeInRight'>
       <CardHeader>
         <CardTitle>Top Products</CardTitle>
       </CardHeader>
@@ -124,7 +124,7 @@ function Charts() {
     </Card>
 
     {/* Monthly Earnings */}
-    <Card className='border border-primary'>
+    <Card className='border border-primary animation-fadeInLeft'>
       <CardHeader>
         <CardTitle>Monthly Earnings</CardTitle>
       </CardHeader>
@@ -142,7 +142,7 @@ function Charts() {
     </Card>
 
     {/* Monthly Profit */}
-    <Card className='border border-primary'>
+    <Card className='border border-primary fadeInRight'>
       <CardHeader>
         <CardTitle>Monthly Profit</CardTitle>
       </CardHeader>

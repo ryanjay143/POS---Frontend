@@ -5,9 +5,8 @@ import Swal from "sweetalert2";
 import axios from "../../plugin/axios";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
-import { faEye, faEyeSlash, faRegistered, faSignIn, faUser  } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faEyeSlash, faSignIn, faUser  } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function Login() {
@@ -83,9 +82,9 @@ function Login() {
           <Link to='/login'>
             <div className="flex flex-col items-center">
               <img
-                src="./brosPOSlogo.png"
+                src="./logo/png/1.png"
                 alt="logo"
-                className="w-40  h-40  "
+                className="w-52 h-36 rounded-full"
               />
             </div>
           </Link>
@@ -93,11 +92,11 @@ function Login() {
         </CardHeader>
 
         <CardContent>
-          <form onSubmit={handleSubmit(handleLogin)} className="flex flex-col gap-4 mt-4">
+          <form onSubmit={handleSubmit(handleLogin)} className="flex flex-col gap-4">
           <Input  
             type="text"
             placeholder="Email or username"
-            className="h-12 rounded-md "
+            className="h-12 "
           
             {...register("credential", { required: "Email or username is required" })}
            
@@ -108,7 +107,7 @@ function Login() {
             <Input
               type={showPassword ? "text" : "password"}
               placeholder="Password"
-              className="mb-5 h-12 border rounded-md"
+              className="mb-5 h-12"
               {...register("password", { required: "Password is required" })}
             />
             <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash } className="w-6 h-6 ml-[90%] mt-[-70px] md:ml-[88%] slg:ml-[88%] text-[#fef08a]" 
@@ -116,16 +115,17 @@ function Login() {
            
             {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
 
-            <div className="flex justify-between items-center">
-              <div className="flex items-center space-x-2">
+            <div className="flex justify-end items-end mb-2">
+              <a href="#" className="text-sm t">
+                Forgot Password?
+              </a>
+              {/* <div className="flex items-center space-x-2">
                 <Checkbox id="remember" />
                 <label htmlFor="remember" className="text-sm font-medium">
                   Remember me
                 </label>
-              </div>
-              <a href="#" className="text-sm">
-                Forgot Password?
-              </a>
+              </div> */}
+           
             </div>
             <Button type="submit" disabled={loading} className="text-white p-2 h-10 rounded-md flex items-center justify-center gap-2">
               {loading ? (
@@ -135,7 +135,7 @@ function Login() {
                 </>
               ) : (
                 <>
-                  <FontAwesomeIcon className="w-5 h-5" icon={faSignIn} />
+                  <FontAwesomeIcon icon={faSignIn} />
                   <span>Login</span>
                 </>
               )}
@@ -143,13 +143,13 @@ function Login() {
 
 
 
-            <button
+            {/* <button
               type="button"
               className="text-white p-2 rounded-md bg-[#4ade80] flex items-center justify-center gap-2"
             >
               <FontAwesomeIcon icon={faRegistered} />
               Register
-            </button>
+            </button> */}
           </form>
         </CardContent>
       </Card>

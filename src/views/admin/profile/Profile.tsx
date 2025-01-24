@@ -8,7 +8,7 @@ function Profile() {
 
   // Clear local storage and navigate to the login page when logout is clicked
   return (
-   <div className="flex items-center gap-2 justify-center">
+  
       <DropdownMenu>
         <DropdownMenuTrigger>
           <Avatar>
@@ -35,7 +35,7 @@ function Profile() {
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
-   </div>
+
   )
 }
 

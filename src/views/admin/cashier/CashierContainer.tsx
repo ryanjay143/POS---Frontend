@@ -1,15 +1,11 @@
-import Footer from "../footer/Footer"
-import Header from "../profile/Header"
-import TableUI from "./layouts/TableUI"
+import ListOfCashier from "./layouts/ListOfCashier"
 
 
 function CashierContainer() {
   return (
-    <div className='flex flex-col w-full overflow-hidden'>
-        <Header />
-        <TableUI />
-        <Footer />
-  </div>
+    <div className='flex flex-col w-full overflow-hidden animation-fadeIn'>
+      <ListOfCashier />
+    </div>
   )
 }
 

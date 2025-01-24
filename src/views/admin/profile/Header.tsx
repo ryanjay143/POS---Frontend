@@ -1,3 +1,5 @@
+import { faFaceSmile, faUserCog } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 
 function Header() {
@@ -13,9 +15,19 @@ function Header() {
   }, []);
 
   return (
-    <div className="ml-72 md:w-full md:font-bold slg:font-bold text-xl md:m-0 md:flex relative md:justify-center md:text-sm justify-center md:items-start flex flex-col gap-4 p-2 mt-2 border border-border bg-primary md:rounded-none rounded-md min-h-[80px]">
-      <h1 className="md:ml-14">Welcome {role}, {userName}</h1>
+    // Header component here...
+    <div className="relative md:ml-10 sm:ml-64 flex flex-row items-center gap-4">
+      <div className="flex flex-row items-center gap-4">
+        <div className="flex flex-col items-start">
+          <span className="text-accent text-2xl font-bold">Hey,  {userName} <FontAwesomeIcon icon={faFaceSmile} /></span> 
+          <div className="flex flex-row items-center gap-2">
+            <span className="text-accent text-base">Role: {role}</span> 
+            <FontAwesomeIcon icon={faUserCog} className="text-accent" />
+          </div>
+        </div>
+      </div>
     </div>
+   
   );
 }
 

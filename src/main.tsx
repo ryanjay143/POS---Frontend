@@ -18,6 +18,10 @@ const ProductContainer = lazy(() =>
   wait(1300).then(() => import('./views/admin/product/ProductContainer.tsx'))
 );
 
+const Addcashier = lazy(() => 
+  wait(1300).then(() => import('./views/admin/cashier/Addcashier.tsx'))
+);
+
 const Login = lazy(() =>
   wait(1300).then(() => import("../src/views/auth/Login.tsx"))
 );
@@ -64,6 +68,14 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<Loader />}>
             <ProductContainer />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/admin/add-cashier",
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Addcashier />
           </Suspense>
         ),
       },

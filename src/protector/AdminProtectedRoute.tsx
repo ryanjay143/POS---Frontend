@@ -5,12 +5,14 @@ import { ThemeProvider } from "../components/themeProvider";
 import Swal from "sweetalert2";
 import AdminSidebar from "@/views/admin/sidebar/AdminSidebar";
 import Profile from "@/views/admin/profile/Profile";
+import Header from "@/views/admin/profile/Header";
+import Footer from "@/views/admin/footer/Footer";
+import Clock from "@/components/clock/clock";
 
 const AdminProtectedRoute = () => {
   const token = localStorage.getItem("access_token");
 
   if (!token) {
-    // Redirect to login page if token is not found
     Swal.fire({
       position: "center",
       icon: "error",
@@ -23,19 +25,20 @@ const AdminProtectedRoute = () => {
 
   return (
     <>
-      <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
-      <div className="bg-background flex md:flex-col md:w-full">
-        <div className="absolute z-30 md:fixed flex gap-3 md:mt-0 items-center right-0 md:top-[-10px] p-7">
-          <ModeToggle />
-          <Profile />
+      <ThemeProvider>
+        <AdminSidebar />
+        <div className="ml-72 md:ml-0 slg:ml-0 md:w-full slg:w-full flex flex-row md:rounded-b-[5px] rounded-b-[5px] justify-between items-center px-6 py-2 bg-primary w-[80%]">
+          <Header />
+          <Clock />
+          <div className="flex flex-row items-center md:fixed slg:fixed slg:z-50 md:right-0 gap-2 slg:right-0 md:top-3 md:gap-2 md:z-50 slg:mr-10">
+            <ModeToggle />
+            <Profile />
+          </div>
         </div>
-        <div className="flex w-full">
-          <AdminSidebar />
-          <Outlet />
-        </div>
-       
-      </div>
-    </ThemeProvider>
+        <Outlet />
+        <Footer />
+      </ThemeProvider>
+ 
     </>
   );
 
