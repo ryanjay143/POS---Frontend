@@ -1,16 +1,14 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useEffect, useState } from 'react';
 import ReactApexChart from 'react-apexcharts';
-import { ApexOptions } from 'apexcharts'; 
 
 function Charts() {
   const [isMounted, setIsMounted] = useState(false);
 
-  // Line Chart Options
-  const lineChartOptions: ApexOptions = {
+  const lineChartOptions = {
     chart: {
       id: 'basic-line',
-      type: 'line', 
+      type: 'line' as const, // Explicit type
     },
     colors: ['#f59e0b'],
     xaxis: {
@@ -25,11 +23,10 @@ function Charts() {
     },
   ];
 
-  // Bar Chart Options
-  const barChartOptions: ApexOptions = {
+  const barChartOptions = {
     chart: {
       id: 'basic-bar',
-      type: 'bar', 
+      type: 'bar' as const, // Explicit type
     },
     colors: ['#f59e0b'],
     xaxis: {
@@ -44,11 +41,10 @@ function Charts() {
     },
   ];
 
-  // Monthly Earnings Options
-  const earningsBarChartOptions: ApexOptions = {
+  const earningsBarChartOptions = {
     chart: {
       id: 'earnings-bar',
-      type: 'bar',
+      type: 'bar' as const, // Explicit type
     },
     colors: ['#f59e0b'],
     xaxis: {
@@ -63,11 +59,10 @@ function Charts() {
     },
   ];
 
-  // Monthly Profits Options
-  const profitsBarChartOptions: ApexOptions = {
+  const profitsBarChartOptions = {
     chart: {
       id: 'profits-bar',
-      type: 'bar',
+      type: 'bar' as const, // Explicit type
     },
     colors: ['#f59e0b'],
     xaxis: {
@@ -77,7 +72,7 @@ function Charts() {
 
   const profitsBarChartSeries = [
     {
-      name: 'Monthly Profit',
+      name: 'Monthly Profits',
       data: [200, 500, 1000, 3000],
     },
   ];
