@@ -134,7 +134,7 @@ function Login() {
 
             {/* Forgot Password */}
             <div className="flex justify-end">
-              <Link to="/forgot-password" className="text-sm text-blue-500">
+              <Link to="/forgot-password" className="text-sm text-black">
                 Forgot Password?
               </Link>
             </div>

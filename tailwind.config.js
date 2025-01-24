@@ -11,12 +11,7 @@ module.exports = {
   			sm: 'calc(var(--radius) - 4px)'
   		},
   		colors: {
-			background: {
-				DEFAULT: 'hsl(var(--background))',
-				sm: 'hsl(var(--background-sm))',
-				md: 'hsl(var(--background-md))',
-				lg: 'hsl(var(--background-lg))',
-				foreground: 'hsl(var(--background-foreground))'},
+  			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
   				DEFAULT: 'hsl(var(--card))',
@@ -67,16 +62,29 @@ module.exports = {
   				ring: 'hsl(var(--sidebar-ring))'
   			}
   		},
-		  screens: {
-			// Add your custom screen sizes here
-			'lg': {'max': '1220px'},
-			'slg': {'max': '1100px'},
-			'md': {'max': '767px'},
-			'sm': {'max': '639px'},
-			'xs': {'max': '450px'},
-			'xxs': {'max': '390px'},
-			'forTable': {'max': '1150px'}
-		  }
+  		screens: {
+  			lg: {
+  				max: '1220px'
+  			},
+  			slg: {
+  				max: '1100px'
+  			},
+  			md: {
+  				max: '767px'
+  			},
+  			sm: {
+  				max: '639px'
+  			},
+  			xs: {
+  				max: '450px'
+  			},
+  			xxs: {
+  				max: '390px'
+  			},
+  			forTable: {
+  				max: '1150px'
+  			}
+  		}
   	}
   },
   plugins: [require("tailwindcss-animate")],
