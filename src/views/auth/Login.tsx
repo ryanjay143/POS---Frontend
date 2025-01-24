@@ -6,32 +6,41 @@ import axios from "../../plugin/axios";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { faEye, faEyeSlash, faSignIn, faUser  } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faEyeSlash, faSignIn, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+interface LoginFormInputs {
+  credential: string;
+  password: string;
+}
 
 function Login() {
   const navigate = useNavigate();
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm<LoginFormInputs>();
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
-  const togglePasswordVisibility = () => {
-    setShowPassword((prevState) => !prevState);
-  };
+  const togglePasswordVisibility = () => setShowPassword((prevState) => !prevState);
 
   useEffect(() => {
-    const token = localStorage.getItem("access_token");
-    if (token) {
-      navigate("/admin", { replace: true });
+    try {
+      const token = localStorage.getItem("access_token");
+      if (token) {
+        navigate("/admin", { replace: true });
+      }
+    } catch (error) {
+      console.error("Error checking localStorage token:", error);
     }
   }, [navigate]);
 
-  const handleLogin = async (data: { email: any; password: any }) => {
+  const handleLogin = async (data: LoginFormInputs) => {
     if (loading) return;
     setLoading(true);
 
     try {
       const response = await axios.post("login", data);
+
+      // Store token and user details in localStorage
       localStorage.setItem("access_token", response.data.access_token);
       localStorage.setItem("username", response.data.user.username);
       localStorage.setItem("email", response.data.user.email);
@@ -46,18 +55,14 @@ function Login() {
       });
 
       setTimeout(() => {
-        if (response.data.user.role == "0")
-        navigate("/admin", { replace: true });
-        else
-        navigate("/admin/pos", { replace: true });
+        const userRole = response.data.user.role;
+        navigate(userRole === "0" ? "/admin" : "/admin/pos", { replace: true });
       }, 1500);
     } catch (error: any) {
       console.error("Login failed", error);
-      let errorMessage = "Invalid email or password.";
 
-      if (error.response?.data?.message) {
-        errorMessage = error.response.data.message;
-      }
+      const errorMessage =
+        error.response?.data?.message || "Invalid email or password.";
 
       Swal.fire({
         position: "center",
@@ -79,7 +84,7 @@ function Login() {
 
       <Card className="w-96 md:w-80 bg-background">
         <CardHeader>
-          <Link to='/login'>
+          <Link to="/login">
             <div className="flex flex-col items-center">
               <img
                 src="./logo/png/1.png"
@@ -88,46 +93,58 @@ function Login() {
               />
             </div>
           </Link>
-          
         </CardHeader>
 
         <CardContent>
           <form onSubmit={handleSubmit(handleLogin)} className="flex flex-col gap-4">
-          <Input  
-            type="text"
-            placeholder="Email or username"
-            className="h-12 "
-          
-            {...register("credential", { required: "Email or username is required" })}
-           
-          />
-         <FontAwesomeIcon className="w-6 h-6 mt-3 ml-[300px] md:ml-[240px] slg:ml-[240px] absolute text-[#fef08a]" icon={faUser}/>
-          {errors.credential && <p className="text-red-500 text-sm">{errors.credential.message}</p>}
-
-            <Input
-              type={showPassword ? "text" : "password"}
-              placeholder="Password"
-              className="mb-5 h-12"
-              {...register("password", { required: "Password is required" })}
-            />
-            <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash } className="w-6 h-6 ml-[90%] mt-[-70px] md:ml-[88%] slg:ml-[88%] text-[#fef08a]" 
-            onClick={togglePasswordVisibility} />
-           
-            {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
-
-            <div className="flex justify-end items-end mb-2">
-              <a href="#" className="text-sm t">
-                Forgot Password?
-              </a>
-              {/* <div className="flex items-center space-x-2">
-                <Checkbox id="remember" />
-                <label htmlFor="remember" className="text-sm font-medium">
-                  Remember me
-                </label>
-              </div> */}
-           
+            {/* Credential Input */}
+            <div className="relative">
+              <Input
+                type="text"
+                placeholder="Email or username"
+                className="h-12"
+                {...register("credential", { required: "Email or username is required" })}
+              />
+              <FontAwesomeIcon
+                icon={faUser}
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500"
+              />
+              {errors.credential?.message && (
+                <p className="text-red-500 text-sm">{String(errors.credential.message)}</p>
+              )}
             </div>
-            <Button type="submit" disabled={loading} className="text-white p-2 h-10 rounded-md flex items-center justify-center gap-2">
+
+            {/* Password Input */}
+            <div className="relative">
+              <Input
+                type={showPassword ? "text" : "password"}
+                placeholder="Password"
+                className="h-12"
+                {...register("password", { required: "Password is required" })}
+              />
+              <FontAwesomeIcon
+                icon={showPassword ? faEye : faEyeSlash}
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 cursor-pointer"
+                onClick={togglePasswordVisibility}
+              />
+              {errors.password?.message && (
+                <p className="text-red-500 text-sm">{String(errors.password.message)}</p>
+              )}
+            </div>
+
+            {/* Forgot Password */}
+            <div className="flex justify-end">
+              <Link to="/forgot-password" className="text-sm text-blue-500">
+                Forgot Password?
+              </Link>
+            </div>
+
+            {/* Login Button */}
+            <Button
+              type="submit"
+              disabled={loading}
+              className="text-white p-2 h-10 rounded-md flex items-center justify-center gap-2 bg-primary hover:bg-yellow-200"
+            >
               {loading ? (
                 <>
                   <span>Logging in...</span>
@@ -140,16 +157,6 @@ function Login() {
                 </>
               )}
             </Button>
-
-
-
-            {/* <button
-              type="button"
-              className="text-white p-2 rounded-md bg-[#4ade80] flex items-center justify-center gap-2"
-            >
-              <FontAwesomeIcon icon={faRegistered} />
-              Register
-            </button> */}
           </form>
         </CardContent>
       </Card>

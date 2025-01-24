@@ -8,7 +8,7 @@ function Charts() {
   const lineChartOptions = {
     chart: {
       id: 'basic-line',
-      type: 'line' as const, // Explicit type
+      type: 'line' as const,
     },
     colors: ['#f59e0b'],
     xaxis: {
@@ -26,7 +26,7 @@ function Charts() {
   const barChartOptions = {
     chart: {
       id: 'basic-bar',
-      type: 'bar' as const, // Explicit type
+      type: 'bar' as const,
     },
     colors: ['#f59e0b'],
     xaxis: {
@@ -44,7 +44,7 @@ function Charts() {
   const earningsBarChartOptions = {
     chart: {
       id: 'earnings-bar',
-      type: 'bar' as const, // Explicit type
+      type: 'bar' as const,
     },
     colors: ['#f59e0b'],
     xaxis: {
@@ -62,7 +62,7 @@ function Charts() {
   const profitsBarChartOptions = {
     chart: {
       id: 'profits-bar',
-      type: 'bar' as const, // Explicit type
+      type: 'bar' as const,
     },
     colors: ['#f59e0b'],
     xaxis: {
