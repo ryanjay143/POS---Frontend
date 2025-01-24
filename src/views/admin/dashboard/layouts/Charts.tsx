@@ -10,7 +10,7 @@ function Charts() {
   const lineChartOptions: ApexOptions = {
     chart: {
       id: 'basic-line',
-      type: 'line', // Ensure type matches ApexOptions
+      type: 'line', 
     },
     colors: ['#f59e0b'],
     xaxis: {
@@ -29,7 +29,7 @@ function Charts() {
   const barChartOptions: ApexOptions = {
     chart: {
       id: 'basic-bar',
-      type: 'bar', // Ensure type matches ApexOptions
+      type: 'bar', 
     },
     colors: ['#f59e0b'],
     xaxis: {
