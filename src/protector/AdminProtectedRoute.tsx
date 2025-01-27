@@ -25,7 +25,7 @@ const AdminProtectedRoute = () => {
 
   return (
     <>
-      <ThemeProvider>
+      <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
         <AdminSidebar />
         <div className="ml-72 md:ml-0 slg:ml-0 md:w-full slg:w-full flex flex-row md:rounded-b-[5px] rounded-b-[5px] justify-between items-center px-6 py-2 bg-primary w-[80%]">
           <Header />

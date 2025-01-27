@@ -10,7 +10,7 @@ const DashboardContainer = lazy(() =>
   wait(1300).then(() => import('./views/admin/dashboard/DashboardContainer.tsx'))
 );
 
-const CashierContainer = lazy(() => 
+const CashierContainer  = lazy(() => 
   wait(1300).then(() => import('./views/admin/cashier/CashierContainer.tsx'))
 );
 
